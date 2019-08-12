@@ -155,11 +155,11 @@ td {
   margin-top: 25px    ;
 }
 .isi-utama {
-  background-image: url(img/bg-img-1.png);
+  background-image: url(../img/bg-img-1.png);
   background-size: 100%;
 }
 .hal-contact-us {
-  background-image: url(img/charles-rRWiVQzLm7k-unsplash.jpg);
+  background-image: url(../img/charles-rRWiVQzLm7k-unsplash.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   width: 512px;
@@ -210,7 +210,7 @@ label {
   height: 60px;
 }
 .minimal {
-  background-image: url(img/down-arrow.png);
+  background-image: url(../img/down-arrow.png);
   background-repeat: no-repeat;
   background-size: 22px;
   background-position: 95% center;
