@@ -1,14 +1,13 @@
 import React from "react";
 import logoReact from "../img/logo-React.png";
 import "../Styles/blogs_listing.css";
-import search from "../img/search.png";
 import BlogsListingSearch from "./BlogsListingSearch";
 
 function BlogsListingHeader() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div>
-        <img className="logo" src={logoReact} />
+        <img className="logo" src={logoReact} alt="" />
       </div>
       <a className="navbar-brand" href="#">
         Kabar-kabar
