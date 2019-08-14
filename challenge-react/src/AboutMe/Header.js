@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../img/logo-ALTA.png";
 import "../Styles/Home.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -16,18 +17,21 @@ function Header() {
             <div className="header-notif text-right">
               <div className="menu">
                 <ul>
-                  <a href="index.html">
+                  <Link to="/home">
                     <li>Home</li>
-                  </a>
-                  <a href="aboutme.html">
+                  </Link>
+                  <Link to="/aboutme">
                     <li>About</li>
-                  </a>
-                  <a href="http://">
-                    <li>Experience</li>
-                  </a>
-                  <a href="contact-us.html">
+                  </Link>
+                  <Link to="/contactus">
                     <li>Contact</li>
-                  </a>
+                  </Link>
+                  <Link to="/blogs">
+                    <li>Blog</li>
+                  </Link>
+                  <Link to="/signout">
+                    <li>Sign Out</li>
+                  </Link>
                 </ul>
               </div>
             </div>

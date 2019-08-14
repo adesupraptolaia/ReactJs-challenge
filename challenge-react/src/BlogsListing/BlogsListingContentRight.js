@@ -1,12 +1,10 @@
 import React from "react";
 import "../Styles/blogs_listing.css";
-import hasil from "../img/foto-berita.jpg";
 import axios from "axios";
 
-const apikey1 = "5ede65c8bcb74c88a86d0aced4410532";
+const apikey1 = "881fa38ba26f4be0b673f16840cdbf8e";
 const baseUrl1 = "https://newsapi.org/v2/top-headlines?";
-const UrlHeadline1 =
-  baseUrl1 + "country=id" + "&category=sports" + "&apiKey=" + apikey1;
+const UrlHeadline1 = baseUrl1 + "country=us" + "&apiKey=" + apikey1;
 
 class BlogsListingContentRight extends React.Component {
   constructor(props) {
@@ -18,7 +16,6 @@ class BlogsListingContentRight extends React.Component {
   componentDidMount() {
     axios.get(UrlHeadline1).then(response => {
       this.setState({ topNews: response.data.articles[0] });
-      console.log(this.state.topNews);
     });
   }
 

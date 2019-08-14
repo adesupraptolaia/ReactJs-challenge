@@ -6,7 +6,7 @@ const apikey = "&apiKey=881fa38ba26f4be0b673f16840cdbf8e";
 const baseUrl = "https://newsapi.org/v2/top-headlines?country=us&category=";
 const baseUrlSearch = "https://newsapi.org/v2/top-headlines?country=us&q=";
 
-class BlogsListingContentLeft extends React.Component {
+class CategoryContentLeft extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,41 +15,25 @@ class BlogsListingContentLeft extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    axios.get(baseUrl + apikey).then(response => {
+  //   componentDidMount = () => {
+  //     axios.get(baseUrl + apikey).then(response => {
+  //       this.setState({ listNews: response.data.articles });
+  //     });
+  //   };
+
+  //   componentWillUpdate() {
+  //     axios.get(baseUrlSearch + this.props.cari3 + apikey).then(response => {
+  //       this.setState({ listNews: response.data.articles });
+  //     });
+  //   }
+
+  componentDidUpdate() {
+    // console.log(prevProps);
+    // console.log(baseUrl + this.props.cat + apikey);
+    axios.get(baseUrl + this.props.cat + apikey).then(response => {
       this.setState({ listNews: response.data.articles });
     });
-  };
-
-  // componentWillReceiveProps(nextProps){
-  //   if (nextProps.cari3 !== this.props.cari3){
-  //     axios.get(baseUrlSearch + this.props.cari3 + apikey).then(response => {
-  //       this.setState({ listNews: response.data.articles });
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.cari3 !== this.props.cari3) {
-      axios.get(baseUrlSearch + this.props.cari3 + apikey).then(response => {
-        this.setState({ listNews: response.data.articles });
-      });
-    }
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.cat !== this.props.cat) {
-  //     axios.get(baseUrlSearch + this.props.cari3 + apikey).then(response => {
-  //       this.setState({ listNews: response.data.articles });
-  //     });
-  //   }
-  // }
-
-  // componentWillUpdate = prevProps => {
-  //   if (prevProps.cat !== this.props.cat) {
-  //     console.log(this.props.cat);
-  //     axios.get(baseUrl + this.props.cat + apikey).then(response => {
-  //       this.setState({ listNews: response.data.articles });
-  //     });
-  //   }
-  // };
 
   render() {
     return (
@@ -73,4 +57,4 @@ class BlogsListingContentLeft extends React.Component {
   }
 }
 
-export default BlogsListingContentLeft;
+export default CategoryContentLeft;

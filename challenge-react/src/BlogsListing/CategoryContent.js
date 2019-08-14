@@ -1,10 +1,10 @@
 import React from "react";
 import BlogsListingHeader from "./BlogsListingHeader";
-import BlogsListingContentLeft from "./BlogsListingContentLeft";
+import CategoryContentLeft from "./CategoryContentLeft";
 import BlogsListingContentRight from "./BlogsListingContentRight";
 import { Redirect } from "react-router-dom";
 
-class BlogsListing extends React.Component {
+class CategoryContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = { keyword: "" };
@@ -31,10 +31,7 @@ class BlogsListing extends React.Component {
           <div className="Container mt-3">
             <div className="row justify-content-center">
               <div className="col-3">
-                <BlogsListingContentLeft
-                  cari3={this.state.keyword}
-                  value={this.props.cat}
-                />
+                <CategoryContentLeft cat={this.props.value} />
               </div>
               <div className="col-8">
                 <BlogsListingContentRight />
@@ -47,4 +44,4 @@ class BlogsListing extends React.Component {
   }
 }
 
-export default BlogsListing;
+export default CategoryContent;

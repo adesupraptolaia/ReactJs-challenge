@@ -2,8 +2,9 @@ import React from "react";
 import logoReact from "../img/logo-React.png";
 import "../Styles/blogs_listing.css";
 import BlogsListingSearch from "./BlogsListingSearch";
+import { Link } from "react-router-dom";
 
-function BlogsListingHeader() {
+function BlogsListingHeader(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div>
@@ -27,76 +28,62 @@ function BlogsListingHeader() {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Beranda <span className="sr-only">(current)</span>
-            </a>
+            <Link className="nav-link" href="#">
+              <Link to="/blogs">Beranda</Link>{" "}
+              <span className="sr-only">(current)</span>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Sepakbola
-            </a>
+            <Link className="nav-link" to="/blog/sports">
+              Sports
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Ekonomi
-            </a>
+            <Link className="nav-link" to="/blog/business">
+              Business
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Politik
-            </a>
+            <Link className="nav-link" to="/blog/technology">
+              Technology
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Hiburan
-            </a>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Lainnya
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
-                Kesehatan
-              </a>
-              <a className="dropdown-item" href="#">
-                Teknologi
-              </a>
-              <div className="dropdown-divider" />
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
+            <Link className="nav-link" to="/blog/entertainment">
+              Entertainment
+            </Link>
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <input
+            onChange={props.kata}
+            value={props.nilai}
             className="form-control mr-sm-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
           />
-
           <BlogsListingSearch />
 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Masuk
-              </a>
+              <Link
+                className="nav-link"
+                to="/signout"
+                onClick={() => props.delete}
+              >
+                Sign Out
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Daftar
-              </a>
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/home">
+                Home
+              </Link>
             </li>
           </ul>
         </form>
