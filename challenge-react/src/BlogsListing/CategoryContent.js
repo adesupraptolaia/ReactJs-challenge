@@ -3,6 +3,8 @@ import BlogsListingHeader from "./BlogsListingHeader";
 import CategoryContentLeft from "./CategoryContentLeft";
 import BlogsListingContentRight from "./BlogsListingContentRight";
 import { Redirect } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
 class CategoryContent extends React.Component {
   constructor(props) {
@@ -16,9 +18,8 @@ class CategoryContent extends React.Component {
   }
 
   render() {
-    const is_login = JSON.parse(localStorage.getItem("is_login"));
-    console.log(is_login);
-    if (is_login === null) {
+    this.props.ubahCategory(this.props.source_name);
+    if (this.props.is_login === false) {
       return <Redirect to={{ pathname: "/" }} />;
     } else {
       return (
@@ -31,7 +32,7 @@ class CategoryContent extends React.Component {
           <div className="Container mt-3">
             <div className="row justify-content-center">
               <div className="col-3">
-                <CategoryContentLeft cat={this.props.value} />
+                <CategoryContentLeft />
               </div>
               <div className="col-8">
                 <BlogsListingContentRight />
@@ -44,4 +45,7 @@ class CategoryContent extends React.Component {
   }
 }
 
-export default CategoryContent;
+export default connect(
+  "search, is_login, category",
+  actions
+)(CategoryContent);

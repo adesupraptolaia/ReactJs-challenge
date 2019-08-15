@@ -2,7 +2,7 @@ import React from "react";
 import "../Styles/blogs_listing.css";
 import axios from "axios";
 
-const apikey1 = "881fa38ba26f4be0b673f16840cdbf8e";
+const apikey1 = "ecd69e3db719409481ea0b4754901df6";
 const baseUrl1 = "https://newsapi.org/v2/top-headlines?";
 const UrlHeadline1 = baseUrl1 + "country=us" + "&apiKey=" + apikey1;
 

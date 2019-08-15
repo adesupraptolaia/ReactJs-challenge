@@ -1,14 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import Header from "./BlogsListingHeader";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-const Profile = () => {
-  const is_login = JSON.parse(localStorage.getItem("is_login"));
-  const email = localStorage.getItem("email");
-  const full_name = localStorage.getItem("full_name");
-  console.log("is_login", is_login);
-
-  if (is_login == null) {
+const Profile = props => {
+  if (props.is_login === false) {
     return <Redirect to={{ pathname: "/" }} />;
   } else {
     return (
@@ -17,15 +14,18 @@ const Profile = () => {
         <h1>Profile</h1>
         <h2>
           <code>Email:</code>
-          {email}
+          {props.email}
         </h2>
         <h2>
           <code>Full name:</code>
-          {full_name}
+          {props.full_name}
         </h2>
       </div>
     );
   }
 };
 
-export default Profile;
+export default connect(
+  "search, is_login, full_name, email",
+  actions
+)(Profile);

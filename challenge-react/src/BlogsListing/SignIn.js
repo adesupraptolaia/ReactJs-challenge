@@ -3,6 +3,8 @@ import axios from "axios";
 import { withRouter, Redirect } from "react-router-dom";
 import logo from "../logo.svg";
 import "../App.css";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
 class SignIn extends React.Component {
   state = { username: "", password: "" };
@@ -11,27 +13,30 @@ class SignIn extends React.Component {
   };
 
   postLogin = () => {
-    const { username, password } = this.state;
-    const data = {
-      username: username,
-      password: password
-    };
-    const self = this;
-    axios
-      .post("https://adesupraptolaia.free.beeceptor.com/auth", data)
-      .then(function(response) {
-        console.log(response.data);
-        if (response.data.hasOwnProperty("api_key")) {
-          localStorage.setItem("api_key", response.data.api_key);
-          localStorage.setItem("is_login", true);
-          localStorage.setItem("full_name", response.data.full_name);
-          localStorage.setItem("email", response.data.email);
-          self.props.history.push("/blogs");
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    console.log(this.props.is_login);
+    this.props.is_login_true();
+    this.props.history.push("/blogs");
+    // const { username, password } = this.state;
+    // const data = {
+    //   username: username,
+    //   password: password
+    // };
+    // const self = this;
+    // axios
+    //   .post("https://adesupraptolaia.free.beeceptor.com/auth", data)
+    //   .then(function(response) {
+    //     console.log(response.data);
+    //     if (response.data.hasOwnProperty("api_key")) {
+    //       localStorage.setItem("api_key", response.data.api_key);
+    //       localStorage.setItem("is_login", true);
+    //       localStorage.setItem("full_name", response.data.full_name);
+    //       localStorage.setItem("email", response.data.email);
+    //       self.props.history.push("/blogs");
+    //     }
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
   };
 
   render() {
@@ -100,4 +105,7 @@ class SignIn extends React.Component {
   }
 }
 
-export default withRouter(SignIn);
+export default connect(
+  "search, is_login",
+  actions
+)(withRouter(SignIn));

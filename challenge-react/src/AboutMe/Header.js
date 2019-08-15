@@ -2,8 +2,10 @@ import React from "react";
 import logo from "../img/logo-ALTA.png";
 import "../Styles/Home.css";
 import { Link } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-function Header() {
+function Header(props) {
   return (
     <header>
       <div className="container-fluid">
@@ -29,7 +31,7 @@ function Header() {
                   <Link to="/blogs">
                     <li>Blog</li>
                   </Link>
-                  <Link to="/signout">
+                  <Link to="/signout" onClick={props.is_login_false}>
                     <li>Sign Out</li>
                   </Link>
                 </ul>
@@ -42,4 +44,7 @@ function Header() {
   );
 }
 
-export default Header;
+export default connect(
+  "search, is_login",
+  actions
+)(Header);

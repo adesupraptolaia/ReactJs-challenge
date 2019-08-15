@@ -2,11 +2,11 @@ import React from "react";
 import Header from "../AboutMe/Header";
 import HomeContent from "./HomeContent";
 import { Redirect } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-function Home() {
-  const is_login = JSON.parse(localStorage.getItem("is_login"));
-
-  if (is_login === null) {
+function Home(props) {
+  if (props.is_login === false) {
     return <Redirect to={{ pathname: "/" }} />;
   } else {
     return (
@@ -18,4 +18,7 @@ function Home() {
   }
 }
 
-export default Home;
+export default connect(
+  "search, is_login",
+  actions
+)(Home);

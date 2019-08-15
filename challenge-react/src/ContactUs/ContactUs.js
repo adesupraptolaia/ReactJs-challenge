@@ -4,11 +4,11 @@ import ContactUsRight from "./ContactUsRight";
 import Header from "../AboutMe/Header";
 import { Redirect } from "react-router-dom";
 import "../Styles/Home.css";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-function ContactUs() {
-  const is_login = JSON.parse(localStorage.getItem("is_login"));
-
-  if (is_login === null) {
+function ContactUs(props) {
+  if (props.is_login === false) {
     return <Redirect to={{ pathname: "/" }} />;
   } else {
     return (
@@ -25,4 +25,7 @@ function ContactUs() {
   }
 }
 
-export default ContactUs;
+export default connect(
+  "search, is_login",
+  actions
+)(ContactUs);

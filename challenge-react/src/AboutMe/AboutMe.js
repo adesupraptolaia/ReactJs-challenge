@@ -4,11 +4,11 @@ import AboutMeText from "./AboutMeText";
 import AboutMeContent from "./AboutMeContent";
 import AboutMeFooter from "./AboutMeFooter";
 import { Redirect } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-function AboutMe() {
-  const is_login = JSON.parse(localStorage.getItem("is_login"));
-
-  if (is_login === null) {
+function AboutMe(props) {
+  if (props.is_login == false) {
     return <Redirect to={{ pathname: "/" }} />;
   } else {
     return (
@@ -22,4 +22,7 @@ function AboutMe() {
   }
 }
 
-export default AboutMe;
+export default connect(
+  "search, is_login",
+  actions
+)(AboutMe);

@@ -3,6 +3,8 @@ import BlogsListingHeader from "./BlogsListingHeader";
 import BlogsListingContentLeft from "./BlogsListingContentLeft";
 import BlogsListingContentRight from "./BlogsListingContentRight";
 import { Redirect } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
 class BlogsListing extends React.Component {
   constructor(props) {
@@ -16,9 +18,9 @@ class BlogsListing extends React.Component {
   }
 
   render() {
-    const is_login = JSON.parse(localStorage.getItem("is_login"));
-    console.log(is_login);
-    if (is_login === null) {
+    // const is_login = JSON.parse(localStorage.getItem("is_login"));
+    // console.log(is_login);
+    if (this.props.is_login === false) {
       return <Redirect to={{ pathname: "/" }} />;
     } else {
       return (
@@ -47,4 +49,7 @@ class BlogsListing extends React.Component {
   }
 }
 
-export default BlogsListing;
+export default connect(
+  "search, is_login",
+  actions
+)(BlogsListing);

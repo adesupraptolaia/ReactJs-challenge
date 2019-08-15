@@ -1,10 +1,12 @@
 import React from "react";
 import "../Styles/blogs_listing.css";
 import axios from "axios";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-const apikey = "&apiKey=881fa38ba26f4be0b673f16840cdbf8e";
+const apikey = "&apiKey=ecd69e3db719409481ea0b4754901df6";
 const baseUrl = "https://newsapi.org/v2/top-headlines?country=us&category=";
-const baseUrlSearch = "https://newsapi.org/v2/top-headlines?country=us&q=";
+// const baseUrlSearch = "https://newsapi.org/v2/top-headlines?country=us&q=";
 
 class CategoryContentLeft extends React.Component {
   constructor(props) {
@@ -26,11 +28,18 @@ class CategoryContentLeft extends React.Component {
   //       this.setState({ listNews: response.data.articles });
   //     });
   //   }
+  componentDidMount() {
+    // console.log(prevProps);
+    // console.log(baseUrl + this.props.cat + apikey);
+    axios.get(baseUrl + this.props.category + apikey).then(response => {
+      this.setState({ listNews: response.data.articles });
+    });
+  }
 
   componentDidUpdate() {
     // console.log(prevProps);
     // console.log(baseUrl + this.props.cat + apikey);
-    axios.get(baseUrl + this.props.cat + apikey).then(response => {
+    axios.get(baseUrl + this.props.category + apikey).then(response => {
       this.setState({ listNews: response.data.articles });
     });
   }
@@ -57,4 +66,7 @@ class CategoryContentLeft extends React.Component {
   }
 }
 
-export default CategoryContentLeft;
+export default connect(
+  "search, is_login, category",
+  actions
+)(CategoryContentLeft);

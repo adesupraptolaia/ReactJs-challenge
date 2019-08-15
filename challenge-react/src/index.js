@@ -12,24 +12,38 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./BlogsListing/SignIn";
 import SignOut from "./BlogsListing/SignOut";
 import Profile from "./BlogsListing/Profile";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "unistore/react";
+import { store } from "./Store";
 
-const route = (
-  <Router>
-    <Switch>
-      <Route path="/home" component={Home} />
-      <Route path="/aboutme" component={AboutMe} />
-      <Route path="/contactus" component={ContactUs} />
-      <Route path="/blogs" component={BlogsListing} />
-      <Route path="/blog/:source_name" component={Category} />
-      <Route exact path="/" component={SignIn} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/signout" component={SignOut} />
-    </Switch>
-  </Router>
-);
+class Tes extends React.Component {
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/aboutme" component={AboutMe} />
+          <Route path="/contactus" component={ContactUs} />
+          <Route path="/blogs" component={BlogsListing} />
+          <Route path="/blog/:source_name" component={Category} />
+          <Route exact path="/" component={SignIn} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/signout" component={SignOut} />
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 // ReactDOM.render(<ContactUs />, document.getElementById("root"));
-ReactDOM.render(route, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <Tes />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
 // ReactDOM.render(<AboutMe />, document.getElementById('root'));
 // ReactDOM.render(<Home />, document.getElementById("root"));
 // ReactDOM.render(<App />, document.getElementById("root"));

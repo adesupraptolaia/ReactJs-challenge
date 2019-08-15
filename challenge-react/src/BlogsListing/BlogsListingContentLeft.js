@@ -1,8 +1,10 @@
 import React from "react";
 import "../Styles/blogs_listing.css";
 import axios from "axios";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-const apikey = "&apiKey=881fa38ba26f4be0b673f16840cdbf8e";
+const apikey = "&apiKey=ecd69e3db719409481ea0b4754901df6";
 const baseUrl = "https://newsapi.org/v2/top-headlines?country=us&category=";
 const baseUrlSearch = "https://newsapi.org/v2/top-headlines?country=us&q=";
 
@@ -17,7 +19,7 @@ class BlogsListingContentLeft extends React.Component {
 
   componentDidMount = () => {
     axios.get(baseUrl + apikey).then(response => {
-      this.setState({ listNews: response.data.articles });
+      this.props.ubahListNews(response.data.articles);
     });
   };
 
@@ -26,13 +28,11 @@ class BlogsListingContentLeft extends React.Component {
   //     axios.get(baseUrlSearch + this.props.cari3 + apikey).then(response => {
   //       this.setState({ listNews: response.data.articles });
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.cari3 !== this.props.cari3) {
-      axios.get(baseUrlSearch + this.props.cari3 + apikey).then(response => {
-        this.setState({ listNews: response.data.articles });
-      });
-    }
-  }
+  componentWillUpdate = () => {
+    axios.get(baseUrlSearch + this.props.search + apikey).then(response => {
+      this.props.ubahListNews(response.data.articles);
+    });
+  };
 
   // componentWillReceiveProps(nextProps) {
   //   if (nextProps.cat !== this.props.cat) {
@@ -56,7 +56,7 @@ class BlogsListingContentLeft extends React.Component {
       <div>
         <ul className="list-group">
           <li className="list-group-item active">Berita Terkini</li>
-          {this.state.listNews.map((item, index) => {
+          {this.props.listNews.map((item, index) => {
             if (index < 5) {
               return (
                 <li className="list-group-item">
@@ -73,4 +73,7 @@ class BlogsListingContentLeft extends React.Component {
   }
 }
 
-export default BlogsListingContentLeft;
+export default connect(
+  "search, is_login, category, listNews",
+  actions
+)(BlogsListingContentLeft);
